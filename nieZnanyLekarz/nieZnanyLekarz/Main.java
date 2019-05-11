@@ -1,7 +1,11 @@
 package nieZnanyLekarz;
 
 public class Main {
+    String flagDoctor = "D";
+
     public static void main(String[] args) {
-        System.out.println("Test");
+
+        LoginScreen loginScreen = new LoginScreen();
+        loginScreen.aaa();
     }
 }
