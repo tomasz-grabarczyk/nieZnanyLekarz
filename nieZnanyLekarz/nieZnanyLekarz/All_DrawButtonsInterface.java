@@ -2,7 +2,7 @@ package nieZnanyLekarz;
 
 import javax.swing.*;
 
-interface DrawButtons {
+interface All_DrawButtonsInterface {
 
     default void drawButtons(JButton buttonName, JFrame frameName) {
         buttonName.setSize(200, 100);
