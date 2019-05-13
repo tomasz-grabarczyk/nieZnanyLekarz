@@ -45,12 +45,10 @@ class LoginScreen implements DrawButtons, DrawFrame {
             loginScreenFrame.dispose();
             SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
             selectActionDoctor.drawButtonsSelectActionDoctor();
-            System.out.println("Doctor loogen in!"); // Do sprawdzenia czy działa, można wywalić w finalnym kodzie
         } else if (getFlagDoctor().equals("P") && loginAndPasswordValidated.get()) {
             loginScreenFrame.dispose();
             SelectActionPatient selectActionPatient = new SelectActionPatient();
             selectActionPatient.drawButtonsSelectActionPatient();
-            System.out.println("Patient logged in!"); // Do sprawdzenia czy działa, można wywalić w finalnym kodzie
         }
     }
 }

@@ -40,8 +40,6 @@ class HoursScreen implements DrawButtons, DrawFrame, SelectActionScreen {
                 // TODO: sprawdzenie, czy data (getDateSelected()) i godzina (hourSelected) została poprawnie dodana do pliku
                 dateAndHourAddedToFile = true;
 
-                LoginScreen loginScreen = new LoginScreen();
-
                 if (dateAndHourAddedToFile) {
                     JOptionPane.showMessageDialog(null, "Added new appointment!\nDate: " + getDateSelected() + "\nHour: " + hourSelected, "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
                     goBackToSelectionScreen();
