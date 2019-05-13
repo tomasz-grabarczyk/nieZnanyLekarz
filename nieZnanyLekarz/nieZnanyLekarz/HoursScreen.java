@@ -1,20 +1,22 @@
 package nieZnanyLekarz;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HoursScreen {
+class HoursScreen implements DrawButtons, DrawFrame, SelectActionScreen {
+    private static String dateSelected;
+    private String getDateSelected() {
+        return dateSelected;
+    }
+    static void setDateSelected(String dateSelected) {
+        HoursScreen.dateSelected = dateSelected;
+    }
 
-    private String selectedHour;
-    public String getSelectedHour() {
-        return selectedHour;
-    }
-    private void setSelectedHour(String selectedHour) {
-        this.selectedHour = selectedHour;
-    }
+    private String hourSelected;
+
+    private boolean dateAndHourAddedToFile = false;
 
     void drawHoursButtons() {
         JFrame hoursFrame = new JFrame("Hours");
@@ -23,6 +25,8 @@ public class HoursScreen {
         List<String> listOfHours = new ArrayList<>(Arrays.asList(arrayOfHours));
         JButton[] hoursButton = new JButton[listOfHours.size()];
 
+        showFrame(hoursFrame, 8, 2);
+
         for (int i = 0; i < listOfHours.size(); i++) {
             hoursButton[i] = new JButton();
             hoursButton[i].setText(listOfHours.get(i));
@@ -30,15 +34,22 @@ public class HoursScreen {
 
             int finalI = i;
             hoursButton[i].addActionListener(e -> {
-                setSelectedHour(hoursButton[finalI].getText());
                 hoursFrame.dispose();
+                hourSelected = hoursButton[finalI].getText();
+
+                // TODO: sprawdzenie, czy data (getDateSelected()) i godzina (hourSelected) została poprawnie dodana do pliku
+                dateAndHourAddedToFile = true;
+
+                LoginScreen loginScreen = new LoginScreen();
+
+                if (dateAndHourAddedToFile) {
+                    JOptionPane.showMessageDialog(null, "Added new appointment!\nDate: " + getDateSelected() + "\nHour: " + hourSelected, "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
+                    goBackToSelectionScreen();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to add new appointment!\nPlease try again!", "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
+                    goBackToSelectionScreen();
+                }
             });
         }
-
-        hoursFrame.setLayout(new GridLayout(8, 2));
-        hoursFrame.setSize(400, listOfHours.size() * 50);
-        hoursFrame.setResizable(false);
-        hoursFrame.setLocationRelativeTo(null);
-        hoursFrame.setVisible(true);
     }
 }

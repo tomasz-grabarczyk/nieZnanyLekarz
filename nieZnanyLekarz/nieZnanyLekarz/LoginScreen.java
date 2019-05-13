@@ -4,38 +4,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class LoginScreen {
-    // Ustaw flagę dla doktora albo pacjenta
+class LoginScreen implements DrawButtons, DrawFrame {
     private static String flagDoctors;
-    private String getFlagDoctor() {
+    String getFlagDoctor() {
         return flagDoctors;
     }
     static void setFlagDoctor(String flagDoctor) {
         flagDoctors = flagDoctor;
     }
 
-    private JFrame loginFrame = new JFrame();
-    private JButton submit = new JButton("Log in");
+    private JFrame loginScreenFrame = new JFrame("Logging screen");
+    private JButton submitButton = new JButton("Log in");
 
     private AtomicBoolean loginAndPasswordValidated = new AtomicBoolean(false);
 
     void drawLoginFrame() {
-        loginFrame.setLayout(new GridLayout(3,1));
+        loginScreenFrame.setLayout(new GridLayout(3,1));
 
         JTextField loginTextField = new JTextField("admin");
         JPasswordField passwordTextField = new JPasswordField("123");
 
-        loginFrame.add(loginTextField);
-        loginFrame.add(passwordTextField);
-        loginFrame.add(submit);
+        loginScreenFrame.add(loginTextField);
+        loginScreenFrame.add(passwordTextField);
+        loginScreenFrame.add(submitButton);
 
-        loginFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        loginFrame.setSize(300, 200);
-        loginFrame.setLocationRelativeTo(null);
-        loginFrame.setResizable(false);
-        loginFrame.setVisible(true);
+        showFrame(loginScreenFrame, 3, 1);
 
-        submit.addActionListener(e -> {
+        submitButton.addActionListener(e -> {
             // TODO: sprawdzenie, czy login i hasło znajdują się w pliku, tutaj porównywane do sztywnych wartości
             if (loginTextField.getText().equals("admin") && passwordTextField.getText().equals("123")) {
                 loginAndPasswordValidated.set(true);
@@ -45,15 +40,16 @@ class LoginScreen {
         });
     }
 
-
     private void proceedAfterSuccessfulLogin() {
         if (getFlagDoctor().equals("D") && loginAndPasswordValidated.get()) {
-            loginFrame.dispose();
-            HoursScreen hoursScreen = new HoursScreen();
-            hoursScreen.drawHoursButtons();
+            loginScreenFrame.dispose();
+            SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
+            selectActionDoctor.drawButtonsSelectActionDoctor();
             System.out.println("Doctor loogen in!"); // Do sprawdzenia czy działa, można wywalić w finalnym kodzie
         } else if (getFlagDoctor().equals("P") && loginAndPasswordValidated.get()) {
-            loginFrame.dispose();
+            loginScreenFrame.dispose();
+            SelectActionPatient selectActionPatient = new SelectActionPatient();
+            selectActionPatient.drawButtonsSelectActionPatient();
             System.out.println("Patient logged in!"); // Do sprawdzenia czy działa, można wywalić w finalnym kodzie
         }
     }
