@@ -1,11 +1,14 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.patientPackage;
+
+import nieZnanyLekarz.interfacePackage.DrawButtons;
+import nieZnanyLekarz.interfacePackage.DrawFrame;
 
 import javax.swing.*;
 
-class Patient_SelectAction
-        implements All_DrawButtonsInterface, All_DrawFrameInterface {
+public class SelectActionPatient
+        implements DrawButtons, DrawFrame {
 
-    void drawButtonsSelectActionPatient() {
+    public void drawButtonsSelectAction() {
         JFrame frame_selectActionPatient = new JFrame("Patient - select action:");
         JButton button_showMyAppointments = new JButton("Show my appointments");
         JButton button_bookNewAppointment = new JButton("Book new appointment");
@@ -13,15 +16,15 @@ class Patient_SelectAction
         drawButtons(button_showMyAppointments, frame_selectActionPatient);
         button_showMyAppointments.addActionListener(e -> {
             frame_selectActionPatient.dispose();
-            Patient_ShowAllAppointments patient_showAllAppointments = new Patient_ShowAllAppointments();
-            patient_showAllAppointments.showPatientAppointments();
+            ShowAllAppointments showAllAppointments = new ShowAllAppointments();
+            showAllAppointments.showPatientAppointments();
         });
 
         drawButtons(button_bookNewAppointment, frame_selectActionPatient);
         button_bookNewAppointment.addActionListener(e -> {
             frame_selectActionPatient.dispose();
-            Patient_BookNewAppointment patient_bookNewAppointment = new Patient_BookNewAppointment();
-            patient_bookNewAppointment.patientNewAppointment();
+            SelectSpecialization selectSpecialization = new SelectSpecialization();
+            selectSpecialization.selectSpecialization();
         });
 
         showFrame(frame_selectActionPatient, 2, 1, 300, 70);

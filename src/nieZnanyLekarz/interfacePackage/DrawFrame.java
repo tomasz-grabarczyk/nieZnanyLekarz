@@ -1,9 +1,9 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.interfacePackage;
 
 import javax.swing.*;
 import java.awt.*;
 
-interface All_DrawFrameInterface {
+public interface DrawFrame {
 
     default void showFrame(JFrame frameName, int numerOfRows, int numerOfColumns, int width, int heightValue) {
         frameName.setLayout(new GridLayout(numerOfRows,numerOfColumns));

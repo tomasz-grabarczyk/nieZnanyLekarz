@@ -1,29 +1,35 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.generalPackage;
+
+import nieZnanyLekarz.doctorPackage.SelectActionDoctor;
+import nieZnanyLekarz.interfacePackage.DrawFrame;
+import nieZnanyLekarz.interfacePackage.DrawButtons;
+import nieZnanyLekarz.patientPackage.SelectActionPatient;
+import nieZnanyLekarz.patientPackage.SelectDoctor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class All_LoginScreen
-        implements All_DrawButtonsInterface, All_DrawFrameInterface {
+public class LoginScreen
+        implements DrawButtons, DrawFrame {
 
     private static String string_flagDoctors;
-    String getFlagDoctor() {
+    public String getFlagDoctor() {
         return string_flagDoctors;
     }
-    static void setFlagDoctor(String flagDoctor) {
+    public static void setFlagDoctor(String flagDoctor) {
         string_flagDoctors = flagDoctor;
     }
 
     private JFrame frame_loginScreen = new JFrame("Logging screen");
     private JButton button_submit = new JButton("Log in");
+    private JTextField textField_login = new JTextField("admin");
 
     private AtomicBoolean atomicBoolean_loginAndPasswordValidated = new AtomicBoolean(false);
 
-    void drawLoginFrame() {
+    public void drawLoginFrame() {
         frame_loginScreen.setLayout(new GridLayout(3,1));
 
-        JTextField textField_login = new JTextField("admin");
         JPasswordField textField_password = new JPasswordField("123");
 
         frame_loginScreen.add(textField_login);
@@ -37,6 +43,9 @@ class All_LoginScreen
             if (textField_login.getText().equals("admin") && textField_password.getText().equals("123")) {
                 atomicBoolean_loginAndPasswordValidated.set(true);
                 proceedAfterSuccessfulLogin();
+            } else if (textField_login.getText().equals("Tomasz") && textField_password.getText().equals("123")) {
+                atomicBoolean_loginAndPasswordValidated.set(true);
+                proceedAfterSuccessfulLogin();
             } else
                 System.out.println("Login lub hasło nieprawidłowe!");
         });
@@ -44,15 +53,14 @@ class All_LoginScreen
 
     private void proceedAfterSuccessfulLogin() {
         if (getFlagDoctor().equals("D") && atomicBoolean_loginAndPasswordValidated.get()) {
+            SelectDoctor.setSelectedDoctorName(textField_login.getText());
             frame_loginScreen.dispose();
-            Doctor_SelectAction doctor_selectAction = new Doctor_SelectAction();
-            doctor_selectAction.drawButtonsSelectActionDoctor();
+            SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
+            selectActionDoctor.drawButtonsSelectAction();
         } else if (getFlagDoctor().equals("P") && atomicBoolean_loginAndPasswordValidated.get()) {
             frame_loginScreen.dispose();
-            Patient_SelectAction patient_selectAction = new Patient_SelectAction();
-            patient_selectAction.drawButtonsSelectActionPatient();
+            SelectActionPatient selectActionPatient = new SelectActionPatient();
+            selectActionPatient.drawButtonsSelectAction();
         }
     }
-
-
 }

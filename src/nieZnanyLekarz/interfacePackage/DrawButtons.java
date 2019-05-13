@@ -1,8 +1,8 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.interfacePackage;
 
 import javax.swing.*;
 
-interface All_DrawButtonsInterface {
+public interface DrawButtons {
 
     default void drawButtons(JButton buttonName, JFrame frameName) {
         buttonName.setSize(200, 100);

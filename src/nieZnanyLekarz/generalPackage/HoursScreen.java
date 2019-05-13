@@ -1,20 +1,18 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.generalPackage;
+
+import nieZnanyLekarz.interfacePackage.DrawButtons;
+import nieZnanyLekarz.interfacePackage.DrawFrame;
+import nieZnanyLekarz.interfacePackage.SelectActionScreenLoop;
+import nieZnanyLekarz.patientPackage.SelectDoctor;
+import nieZnanyLekarz.patientPackage.SelectSpecialization;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class All_HoursScreen
-        implements All_DrawButtonsInterface, All_DrawFrameInterface, All_SelectActionScreenLoopInterface {
-
-    private static String string_dateSelected;
-    private String getDateSelected() {
-        return string_dateSelected;
-    }
-    static void setString_dateSelected(String string_dateSelected) {
-        All_HoursScreen.string_dateSelected = string_dateSelected;
-    }
+public class HoursScreen
+        implements DrawButtons, DrawFrame, SelectActionScreenLoop {
 
     private String string_hourSelected;
 
@@ -30,8 +28,7 @@ class All_HoursScreen
         showFrame(frame_hours, 8, 2, 300, 70);
 
         for (int i = 0; i < stringList_hours.size(); i++) {
-            button_hours[i] = new JButton();
-            button_hours[i].setText(stringList_hours.get(i));
+            button_hours[i] = new JButton(stringList_hours.get(i));
             frame_hours.add(button_hours[i]);
 
             int finalI = i;
@@ -43,7 +40,7 @@ class All_HoursScreen
                 boolean_dateAndHourAddedToFile = true;
 
                 if (boolean_dateAndHourAddedToFile) {
-                    JOptionPane.showMessageDialog(null, "Added new appointment!\nDate: " + getDateSelected() + "\nHour: " + string_hourSelected, "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Added new appointment:\n\nSpecialization: " + SelectSpecialization.getDoctorSpecialization() + "\nDoctor: " + SelectDoctor.getSelectedDoctorName() + "\nDate: " + CalendarScreen.getDateSelected() + "\nHour: " + string_hourSelected, "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
                     goBackToSelectionScreen();
                 } else {
                     JOptionPane.showMessageDialog(null, "Failed to add new appointment!\nPlease try again!", "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);

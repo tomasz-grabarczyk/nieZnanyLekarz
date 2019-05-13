@@ -1,15 +1,27 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.generalPackage;
+
+
+
+import nieZnanyLekarz.interfacePackage.DrawButtons;
+import nieZnanyLekarz.interfacePackage.DrawFrame;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static nieZnanyLekarz.All_HoursScreen.setString_dateSelected;
 
-class All_CalendarScreen
-        implements All_DrawButtonsInterface, All_DrawFrameInterface {
+public class CalendarScreen
+        implements DrawButtons, DrawFrame {
 
-    void selectDate() {
+    private static String string_dateSelected;
+    static String getDateSelected() {
+        return string_dateSelected;
+    }
+    private static void setString_dateSelected(String string_dateSelected) {
+        CalendarScreen.string_dateSelected = string_dateSelected;
+    }
+
+    public void selectDate() {
         JFrame frame_calendarScreen = new JFrame("Calendar");
         String[] stringArray_dates = {"13.05.2019", "14.05.2019", "15.05.2019", "16.05.2019", "17.05.2019"};
 
@@ -27,8 +39,8 @@ class All_CalendarScreen
             button_dates[i].addActionListener(e -> {
                 frame_calendarScreen.dispose();
                 setString_dateSelected(button_dates[finalI].getText());
-                All_HoursScreen all_hoursScreen = new All_HoursScreen();
-                all_hoursScreen.drawHoursButtons();
+                HoursScreen hoursScreen = new HoursScreen();
+                hoursScreen.drawHoursButtons();
             });
         }
     }

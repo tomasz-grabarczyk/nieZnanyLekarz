@@ -1,6 +1,6 @@
-package nieZnanyLekarz;
+package nieZnanyLekarz.doctorPackage;
 
-class Doctor_ShowAllAppointments {
+class ShowAllAppointments {
 
     void showDoctorAppointments() {
         // TODO: code to show doctor appointments
