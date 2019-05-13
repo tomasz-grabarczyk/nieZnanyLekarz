@@ -3,7 +3,7 @@ package nieZnanyLekarz;
 import javax.swing.*;
 import java.awt.*;
 
-public interface DrawFrame {
+interface DrawFrame {
 
     default void showFrame(JFrame frameName, int numerOfRows, int numerOfColumns) {
         frameName.setLayout(new GridLayout(numerOfRows,numerOfColumns));

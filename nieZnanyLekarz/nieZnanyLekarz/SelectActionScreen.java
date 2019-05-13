@@ -1,6 +1,6 @@
 package nieZnanyLekarz;
 
-public interface SelectActionScreen {
+interface SelectActionScreen {
 
     default void goBackToSelectionScreen() {
         LoginScreen loginScreen = new LoginScreen();
