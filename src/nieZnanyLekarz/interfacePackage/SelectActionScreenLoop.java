@@ -10,11 +10,11 @@ public interface SelectActionScreenLoop {
         LoginScreen loginScreen = new LoginScreen();
 
         if (loginScreen.getFlagDoctor().equals("D")) {
-            SelectActionDoctor doctor_selectAction = new SelectActionDoctor();
-            doctor_selectAction.drawButtonsSelectAction();
+            SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
+            selectActionDoctor.drawButtonsSelectActionDoctor(); // wróc do wyboru akcji dla lekarza
         } else if (loginScreen.getFlagDoctor().equals("P")) {
-            SelectActionPatient patient_selectAction = new SelectActionPatient();
-            patient_selectAction.drawButtonsSelectAction();
+            SelectActionPatient selectActionPatient = new SelectActionPatient();
+            selectActionPatient.drawButtonsSelectActionPatient(); // wróc do wyboru akcji dla pacjenta
         }
     }
 }

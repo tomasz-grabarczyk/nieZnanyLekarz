@@ -1,7 +1,5 @@
 package nieZnanyLekarz.generalPackage;
 
-
-
 import nieZnanyLekarz.interfacePackage.DrawButtons;
 import nieZnanyLekarz.interfacePackage.DrawFrame;
 
@@ -17,7 +15,7 @@ public class CalendarScreen
     static String getDateSelected() {
         return string_dateSelected;
     }
-    private static void setString_dateSelected(String string_dateSelected) {
+    private void setString_dateSelected(String string_dateSelected) {
         CalendarScreen.string_dateSelected = string_dateSelected;
     }
 

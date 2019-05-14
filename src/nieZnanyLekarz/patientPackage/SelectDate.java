@@ -2,10 +2,10 @@ package nieZnanyLekarz.patientPackage;
 
 import nieZnanyLekarz.generalPackage.CalendarScreen;
 
-class BookNewAppointment {
+public class SelectDate {
 
-    void bookNewAppointment() {
+    public void selectDate() {
         CalendarScreen calendarScreen = new CalendarScreen();
-        calendarScreen.selectDate();
+        calendarScreen.selectDate(); // pokaż kalendarz
     }
 }

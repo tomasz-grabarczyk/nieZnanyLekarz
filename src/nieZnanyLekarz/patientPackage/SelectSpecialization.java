@@ -1,8 +1,6 @@
 package nieZnanyLekarz.patientPackage;
 
-import nieZnanyLekarz.interfacePackage.DrawButtons;
-import nieZnanyLekarz.interfacePackage.DrawFrame;
-import nieZnanyLekarz.interfacePackage.SelectActionScreenLoop;
+import nieZnanyLekarz.interfacePackage.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SelectSpecialization
-        implements DrawButtons, DrawFrame, SelectActionScreenLoop {
+        implements DrawButtons, DrawFrame, SelectActionScreenLoop, SelectDoctors {
 
     private static String doctorSpecialization;
     public static String getDoctorSpecialization() {
@@ -20,7 +18,16 @@ public class SelectSpecialization
         SelectSpecialization.doctorSpecialization = doctorSpecialization;
     }
 
+    private static String selectedDoctorName;
+    public static String getSelectedDoctorName() {
+        return selectedDoctorName;
+    }
+    public static void setSelectedDoctorName(String selectedDoctorName) {
+        SelectSpecialization.selectedDoctorName = selectedDoctorName;
+    }
+
     void selectSpecialization() {
+        // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
         String[] stringArray_doctorSpecialization = {"Internist", "Oncologist", "Cardiologist"};
         List<String> stringList_doctorSpecialization = new ArrayList<>(Arrays.asList(stringArray_doctorSpecialization));
 
@@ -34,22 +41,27 @@ public class SelectSpecialization
             int finalI = i;
             button_doctorSpecialization[i].addActionListener(e -> {
                 frame_selectSpecialization.dispose();
-                setDoctorSpecialization(button_doctorSpecialization[finalI].getText());
+                SelectSpecialization.setDoctorSpecialization(button_doctorSpecialization[finalI].getText());
 
-                if (getDoctorSpecialization().equals("Internist")) {
-                    SelectDoctor selectDoctor = new SelectDoctor();
-                    selectDoctor.selectDoctor();
-                } else {
-                    JOptionPane.showMessageDialog(null, "There is no doctor with specialization: " + getDoctorSpecialization(), "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
-                    goBackToSelectionScreen();
+                switch (SelectSpecialization.getDoctorSpecialization()) {
+                    case "Internist":
+                        // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
+                        String[] stringArray_doctorNamesInternist = {"Jan Kowalski", "Tomasz Grabarczyk", "Krolik Bugs"};
+                        selectDoctorInterface(stringArray_doctorNamesInternist);
+                        break;
+                    case "Oncologist":
+                        // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
+                        String[] stringArray_doctorNamesOncologist = {"Maria Wanda", "Myszka Miki", "Karol Hipopotam"}; // stwórz listę z imionami doktorów
+                        selectDoctorInterface(stringArray_doctorNamesOncologist);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "There is no doctor with specialization: " + SelectSpecialization.getDoctorSpecialization(), "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
+                        goBackToSelectionScreen();
+                        break;
                 }
-
             });
-
         }
 
         showFrame(frame_selectSpecialization, stringList_doctorSpecialization.size(), 1, 200, 100);
-
     }
-
 }
