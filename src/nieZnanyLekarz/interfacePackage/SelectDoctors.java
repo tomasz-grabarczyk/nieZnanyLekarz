@@ -1,7 +1,7 @@
 package nieZnanyLekarz.interfacePackage;
 
-import nieZnanyLekarz.patientPackage.SelectDate;
-import nieZnanyLekarz.patientPackage.SelectSpecialization;
+import nieZnanyLekarz.generalPackage.CalendarScreen;
+import nieZnanyLekarz.patientPackage.SelectDoctorName;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public interface SelectDoctors extends DrawButtons, DrawFrame {
             int finalI = i;
             button_doctorName[i].addActionListener(e -> { // dodaj akcję po kliknięciu w przycisk
                 frame_selectDoctor.dispose(); // ukryj ramkę
-                SelectDate selectDate = new SelectDate();
-                selectDate.selectDate(); // przejdź do wyboru daty
-                SelectSpecialization.setSelectedDoctorName(button_doctorName[finalI].getText()); // ustaw imię i nazwisko doktora bazując na tym, co pokazuje przycisk
+                CalendarScreen calendarScreen = new CalendarScreen();
+                calendarScreen.selectDate(); // przejdź do wyboru daty
+                SelectDoctorName.setSelectedDoctorName(button_doctorName[finalI].getText()); // ustaw imię i nazwisko doktora bazując na tym, co pokazuje przycisk
             });
 
         }

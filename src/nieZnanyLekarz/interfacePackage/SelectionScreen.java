@@ -4,17 +4,17 @@ import nieZnanyLekarz.doctorPackage.SelectActionDoctor;
 import nieZnanyLekarz.generalPackage.LoginScreen;
 import nieZnanyLekarz.patientPackage.SelectActionPatient;
 
-public interface SelectActionScreenLoop {
+public interface SelectionScreen {
 
-    default void goBackToSelectionScreen() {
+    default void selectionScreen() {
         LoginScreen loginScreen = new LoginScreen();
 
         if (loginScreen.getFlagDoctor().equals("D")) {
             SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
-            selectActionDoctor.drawButtonsSelectActionDoctor(); // wróc do wyboru akcji dla lekarza
+            selectActionDoctor.selectActionDoctor(); // wróc do wyboru akcji dla lekarza
         } else if (loginScreen.getFlagDoctor().equals("P")) {
             SelectActionPatient selectActionPatient = new SelectActionPatient();
-            selectActionPatient.drawButtonsSelectActionPatient(); // wróc do wyboru akcji dla pacjenta
+            selectActionPatient.selectActionPatient(); // wróc do wyboru akcji dla pacjenta
         }
     }
 }

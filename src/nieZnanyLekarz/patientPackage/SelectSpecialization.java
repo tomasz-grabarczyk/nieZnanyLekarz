@@ -7,23 +7,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SelectSpecialization
-        implements DrawButtons, DrawFrame, SelectActionScreenLoop, SelectDoctors {
+class SelectSpecialization
+        implements DrawButtons, DrawFrame, SelectionScreen, SelectDoctors {
 
     private static String doctorSpecialization;
-    public static String getDoctorSpecialization() {
+    static String getDoctorSpecialization() {
         return doctorSpecialization;
     }
     private static void setDoctorSpecialization(String doctorSpecialization) {
         SelectSpecialization.doctorSpecialization = doctorSpecialization;
-    }
-
-    private static String selectedDoctorName;
-    public static String getSelectedDoctorName() {
-        return selectedDoctorName;
-    }
-    public static void setSelectedDoctorName(String selectedDoctorName) {
-        SelectSpecialization.selectedDoctorName = selectedDoctorName;
     }
 
     void selectSpecialization() {
@@ -31,37 +23,24 @@ public class SelectSpecialization
         String[] stringArray_doctorSpecialization = {"Internist", "Oncologist", "Cardiologist"};
         List<String> stringList_doctorSpecialization = new ArrayList<>(Arrays.asList(stringArray_doctorSpecialization));
 
-        JFrame frame_selectSpecialization = new JFrame("Select specialization");
-        JButton[] button_doctorSpecialization = new JButton[stringList_doctorSpecialization.size()];
+        JFrame frame_selectSpecialization = new JFrame("Select specialization"); // stwórz ramkę dla specjalizacji doktora
+        JButton[] button_doctorSpecialization = new JButton[stringList_doctorSpecialization.size()]; // stwórz przyciski dla specjalizacji doktora w ilości elementów tablicy
 
-        for (int i = 0; i < stringList_doctorSpecialization.size(); i++) {
-            button_doctorSpecialization[i] = new JButton(stringList_doctorSpecialization.get(i));
-            drawButtons(button_doctorSpecialization[i], frame_selectSpecialization);
+
+        for (int i = 0; i < stringList_doctorSpecialization.size(); i++) { // iteruje bazując na ilości elementów tablicy
+            button_doctorSpecialization[i] = new JButton(stringList_doctorSpecialization.get(i)); // stwórz nowy przycisk i ustal jego wartość na element z tablicy
+            drawButtons(button_doctorSpecialization[i], frame_selectSpecialization); // stwórz przyciski i dodaj je do ramki
 
             int finalI = i;
-            button_doctorSpecialization[i].addActionListener(e -> {
-                frame_selectSpecialization.dispose();
-                SelectSpecialization.setDoctorSpecialization(button_doctorSpecialization[finalI].getText());
+            button_doctorSpecialization[i].addActionListener(e -> { // dodaj akcję po kliknięciu
+                frame_selectSpecialization.dispose(); // ukryj ramkę specjalizacji
+                SelectSpecialization.setDoctorSpecialization(button_doctorSpecialization[finalI].getText()); // ustal wartość zmiennej na tekst z przycisku
 
-                switch (SelectSpecialization.getDoctorSpecialization()) {
-                    case "Internist":
-                        // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
-                        String[] stringArray_doctorNamesInternist = {"Jan Kowalski", "Tomasz Grabarczyk", "Krolik Bugs"};
-                        selectDoctorInterface(stringArray_doctorNamesInternist);
-                        break;
-                    case "Oncologist":
-                        // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
-                        String[] stringArray_doctorNamesOncologist = {"Maria Wanda", "Myszka Miki", "Karol Hipopotam"}; // stwórz listę z imionami doktorów
-                        selectDoctorInterface(stringArray_doctorNamesOncologist);
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "There is no doctor with specialization: " + SelectSpecialization.getDoctorSpecialization(), "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
-                        goBackToSelectionScreen();
-                        break;
-                }
+                SelectDoctorName selectDoctorName = new SelectDoctorName();
+                selectDoctorName.selectDoctorName(); // pokaż ramkę związaną z wyborem imienia lekarza
             });
         }
 
-        showFrame(frame_selectSpecialization, stringList_doctorSpecialization.size(), 1, 200, 100);
+        showFrame(frame_selectSpecialization, stringList_doctorSpecialization.size(), 1, 200, 100); // pokaż ramkę wyboru specjalizacji i ustal jej właściwości
     }
 }

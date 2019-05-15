@@ -7,9 +7,9 @@ import static nieZnanyLekarz.generalPackage.LoginScreen.setFlagDoctor;
 class MainPatient {
 
     public static void main(String[] args) {
-        setFlagDoctor("P");
+        setFlagDoctor("P"); // ustal flagę na pacjenta
 
         LoginScreen loginScreen = new LoginScreen();
-        loginScreen.drawLoginFrame();
+        loginScreen.drawLoginFrame(); // pokaż ekran logowania
         }
 }

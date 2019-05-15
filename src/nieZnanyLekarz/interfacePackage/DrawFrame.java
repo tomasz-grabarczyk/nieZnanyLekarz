@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public interface DrawFrame extends SelectActionScreenLoop {
+public interface DrawFrame extends SelectionScreen {
 
-    default void showFrame(JFrame frameName, int numerOfRows, int numerOfColumns, int width, int heightValue) {
+    default void showFrame(JFrame frameName, int numerOfRows, int numerOfColumns, int width, int heightMultiplierValue) {
         frameName.setLayout(new GridLayout(numerOfRows,numerOfColumns)); // stwórz GridLayout
-        frameName.setSize(width,heightValue * numerOfRows); // ustaw wielkość
+        frameName.setSize(width,heightMultiplierValue * numerOfRows); // ustaw wielkość
         frameName.setLocationRelativeTo(null); // pokaż ramkę na środku ekranu
         frameName.setResizable(false); // zablokuj możliwość zmiany rozmiaru ramki
         frameName.setVisible(true); // pokaż ramkę
@@ -17,7 +17,7 @@ public interface DrawFrame extends SelectActionScreenLoop {
         frameName.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
-                goBackToSelectionScreen(); // po naciśnięciu "X" wraca do ramki wyboru akcji
+                selectionScreen(); // po naciśnięciu "X" wraca do ramki wyboru akcji
             }
         });
     }

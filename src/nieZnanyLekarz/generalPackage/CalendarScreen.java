@@ -11,8 +11,10 @@ import java.util.List;
 public class CalendarScreen
         implements DrawButtons, DrawFrame {
 
+    // TODO: zmienić całą klasę na instancję kalendarza, zrobione tylko dla testów
+
     private static String string_dateSelected;
-    static String getDateSelected() {
+    public static String getDateSelected() {
         return string_dateSelected;
     }
     private void setString_dateSelected(String string_dateSelected) {

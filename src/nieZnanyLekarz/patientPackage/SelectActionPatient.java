@@ -8,7 +8,7 @@ import javax.swing.*;
 public class SelectActionPatient
         implements DrawButtons, DrawFrame {
 
-    public void drawButtonsSelectActionPatient() {
+    public void selectActionPatient() {
         JFrame frame_selectActionPatient = new JFrame("Patient - select action:"); // stwórz nową ramkę dla wyboru akcji pacjenta
         JButton button_showMyAppointments = new JButton("Show my appointments"); // stwórz przycisk dla pokazywania wizyt
         JButton button_bookNewAppointment = new JButton("Book new appointment"); // stwórz przycisk dla rezerwacji wizyty
