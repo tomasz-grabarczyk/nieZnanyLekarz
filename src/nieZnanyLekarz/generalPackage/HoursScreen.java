@@ -14,7 +14,7 @@ public class HoursScreen
     public static String getHourSelected() {
         return string_hourSelected;
     }
-    private void setString_hourSelected(String string_hourSelected) {
+    public static void setHourSelected(String string_hourSelected) {
         HoursScreen.string_hourSelected = string_hourSelected;
     }
 

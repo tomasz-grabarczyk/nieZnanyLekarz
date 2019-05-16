@@ -3,9 +3,11 @@ package nieZnanyLekarz.patientPackage;
 import nieZnanyLekarz.interfacePackage.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 class SelectSpecialization
         implements DrawButtons, DrawFrame, SelectionScreen, SelectDoctors {
@@ -18,7 +20,7 @@ class SelectSpecialization
         SelectSpecialization.doctorSpecialization = doctorSpecialization;
     }
 
-    void selectSpecialization() {
+    void selectSpecialization() throws IOException {
         // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
         String[] stringArray_doctorSpecialization = {"Internist", "Oncologist", "Cardiologist"};
         List<String> stringList_doctorSpecialization = new ArrayList<>(Arrays.asList(stringArray_doctorSpecialization));

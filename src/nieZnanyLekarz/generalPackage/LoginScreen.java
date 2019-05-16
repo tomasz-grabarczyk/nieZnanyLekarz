@@ -7,6 +7,8 @@ import nieZnanyLekarz.patientPackage.SelectActionPatient;
 import nieZnanyLekarz.patientPackage.SelectDoctorName;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LoginScreen

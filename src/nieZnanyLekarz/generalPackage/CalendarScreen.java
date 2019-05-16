@@ -17,7 +17,7 @@ public class CalendarScreen
     public static String getDateSelected() {
         return string_dateSelected;
     }
-    private void setString_dateSelected(String string_dateSelected) {
+    private static void setDateSelected(String string_dateSelected) {
         CalendarScreen.string_dateSelected = string_dateSelected;
     }
 
@@ -38,7 +38,7 @@ public class CalendarScreen
             int finalI = i;
             button_dates[i].addActionListener(e -> {
                 frame_calendarScreen.dispose();
-                setString_dateSelected(button_dates[finalI].getText());
+                setDateSelected(button_dates[finalI].getText());
                 HoursScreen hoursScreen = new HoursScreen();
                 hoursScreen.drawHoursButtons();
             });
