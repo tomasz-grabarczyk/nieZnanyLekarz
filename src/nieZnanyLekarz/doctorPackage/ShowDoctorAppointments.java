@@ -1,26 +1,32 @@
 package nieZnanyLekarz.doctorPackage;
 
-import nieZnanyLekarz.generalPackage.CalendarScreen;
-import nieZnanyLekarz.generalPackage.HoursScreen;
 import nieZnanyLekarz.interfacePackage.DrawFrame;
+import nieZnanyLekarz.interfacePackage.ReadDataFromFile;
+import nieZnanyLekarz.interfacePackage.ShowAppointments;
+import nieZnanyLekarz.patientPackage.SelectDoctorName;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.util.List;
 
 class ShowDoctorAppointments
-        implements DrawFrame {
+        implements DrawFrame, ShowAppointments, ReadDataFromFile {
 
-    void showDoctorAppointments() {
-        // TODO: code to show doctor appointments
-        JFrame frame_doctorAppoinments = new JFrame("Doctor appointments"); // stwórz ramkę tworzenia wizyt dla doktora
+    private JFrame frame_doctorAppointments = new JFrame("Doctor appointments");
 
-        JLabel labelDoctorAppointment = new JLabel(); // stwórz label dla pokazywania wizyty
-        labelDoctorAppointment.setText("<html>" + "Date: " + CalendarScreen.getDateSelected() + "<br/>Hour: " + HoursScreen.getHourSelected() +"</html>");
+    void showDoctorAppointments() throws IOException {
+        String filePath = "/home/zayl/IdeaProjects/nieZnanyLekarz/src/patientAppointment.txt";
+        String doctorNamesPath = "/home/zayl/IdeaProjects/nieZnanyLekarz/src/doctorNames.txt";
 
-        JLabel labelDoctorAppointment2 = new JLabel();
-        labelDoctorAppointment2.setText("<html>" + "Date: " + CalendarScreen.getDateSelected() + "<br/>Hour: " + HoursScreen.getHourSelected() +"</html>");
+        List<String> list_doctorNames = readDataFromFile(doctorNamesPath, "; ");
 
-        frame_doctorAppoinments.add(labelDoctorAppointment);
-        frame_doctorAppoinments.add(labelDoctorAppointment2);
-        showFrame(frame_doctorAppoinments, 5, 1, 150, 50);
+        String doctorName = "";
+
+        for (int i = 0; i < list_doctorNames.size(); i += 2) {
+            if (SelectDoctorName.getSelectedDoctorName().equals(list_doctorNames.get(i)))
+                doctorName = list_doctorNames.get(i + 1);
+        }
+
+        showAppointments(frame_doctorAppointments, filePath, true, 40, doctorName);
     }
 }

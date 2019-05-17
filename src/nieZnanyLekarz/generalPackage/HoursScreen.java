@@ -1,6 +1,7 @@
 package nieZnanyLekarz.generalPackage;
 
 import nieZnanyLekarz.interfacePackage.*;
+import nieZnanyLekarz.patientPackage.SelectSpecialization;
 
 import javax.swing.*;
 import java.util.ArrayList;

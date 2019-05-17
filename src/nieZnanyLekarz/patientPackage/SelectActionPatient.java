@@ -38,6 +38,7 @@ public class SelectActionPatient
         drawButtons(button_bookNewAppointment, frame_selectActionPatient); // dodaj przycisk do ramki
         button_bookNewAppointment.addActionListener(e -> { // dodaj akcję po kliknięciu w przycisk
             frame_selectActionPatient.dispose(); // zamknij ramkę z przyciskami
+
             SelectSpecialization selectSpecialization = new SelectSpecialization();
             try {
                 // dodaj nowy rekord do pliku

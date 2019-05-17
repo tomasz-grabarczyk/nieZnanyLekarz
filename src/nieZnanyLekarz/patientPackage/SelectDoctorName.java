@@ -8,7 +8,7 @@ public class SelectDoctorName
         implements SelectDoctors {
 
     private static String selectedDoctorName;
-    static String getSelectedDoctorName() {
+    public static String getSelectedDoctorName() {
         return selectedDoctorName;
     }
     public static void setSelectedDoctorName(String selectedDoctorName) {

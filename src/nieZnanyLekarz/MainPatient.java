@@ -2,8 +2,6 @@ package nieZnanyLekarz;
 
 import nieZnanyLekarz.generalPackage.LoginScreen;
 
-import java.util.ArrayList;
-
 import static nieZnanyLekarz.generalPackage.LoginScreen.setFlagDoctor;
 
 class MainPatient {

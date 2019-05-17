@@ -5,6 +5,7 @@ import nieZnanyLekarz.interfacePackage.DrawButtons;
 import nieZnanyLekarz.interfacePackage.DrawFrame;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class SelectActionDoctor
         implements DrawButtons, DrawFrame {
@@ -18,7 +19,11 @@ public class SelectActionDoctor
         button_showAllAppointments.addActionListener(e -> { // dodaj akcję po kliknięciu w przycisk
             frame_selectActionDoctor.dispose(); // zamknij ramkę z przyciskami
             ShowDoctorAppointments showDoctorAppointments = new ShowDoctorAppointments();
-            showDoctorAppointments.showDoctorAppointments(); // dodaj ramkę z pokazywaniem wizyt doktora
+            try {
+                showDoctorAppointments.showDoctorAppointments(); // dodaj ramkę z pokazywaniem wizyt doktora
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         drawButtons(button_newAppointment, frame_selectActionDoctor);

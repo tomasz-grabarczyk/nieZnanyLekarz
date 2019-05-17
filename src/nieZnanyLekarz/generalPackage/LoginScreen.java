@@ -7,8 +7,6 @@ import nieZnanyLekarz.patientPackage.SelectActionPatient;
 import nieZnanyLekarz.patientPackage.SelectDoctorName;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LoginScreen
@@ -24,7 +22,8 @@ public class LoginScreen
 
     private JFrame frame_loginScreen = new JFrame("Logging screen"); // stwórz ramkę logowania
     private JButton button_submit = new JButton("Log in"); // stwórz przycisk do logowania
-    private JTextField textField_login = new JTextField("admin"); // stwórz wiersz do wpisania loginu
+
+    private JTextField textField_login = new JTextField(); // stwórz wiersz do wpisania loginu
 
     private AtomicBoolean atomicBoolean_loginAndPasswordValidated = new AtomicBoolean(false); // ustal wartość walidacji loginy na false
 
@@ -37,10 +36,10 @@ public class LoginScreen
 
         button_submit.addActionListener(e -> { // dodaj akcję po kliknięciu
             // TODO: sprawdzenie, czy login i hasło znajdują się w pliku, tutaj porównywane do sztywnych wartości
-            if (textField_login.getText().equals("admin") && textField_password.getText().equals("123")) {
+            if (textField_login.getText().equals("mmiki") && textField_password.getText().equals("123")) {
                 atomicBoolean_loginAndPasswordValidated.set(true);
                 proceedAfterSuccessfulLogin();
-            } else if (textField_login.getText().equals("Tomasz") && textField_password.getText().equals("123")) {
+            } else if (textField_login.getText().equals("tgrabarczyk") && textField_password.getText().equals("123")) {
                 atomicBoolean_loginAndPasswordValidated.set(true);
                 proceedAfterSuccessfulLogin();
             } else

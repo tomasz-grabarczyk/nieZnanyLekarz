@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-class SelectSpecialization
+public class SelectSpecialization
         implements DrawButtons, DrawFrame, SelectionScreen, SelectDoctors {
 
     private static String doctorSpecialization;
