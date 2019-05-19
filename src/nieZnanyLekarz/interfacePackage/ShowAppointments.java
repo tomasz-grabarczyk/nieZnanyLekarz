@@ -26,11 +26,14 @@ public interface ShowAppointments extends DrawFrame, ReadDataFromFile {
             }
         }
 
-        for (int i = 0; i <= 100; i += 10) { // pokaż informacje dla maksymalnie 100 wizyt
-            if (i == 0)
-                oddNuber = 0; // jeśli wizyt jest poniżej 10 to nie dodawaj kolejnego nadmiarowego wiersza
-            if (numberOfRows > i && numberOfRows <= i + 10)
-                numberOfColumns = (i + 10) / 10; // ustaw liczbę kolumn na podstawie liczby rekordów
+        if (numberOfRows <= 10) {
+            oddNuber = 0;
+            numberOfColumns = 1;
+        } else {
+            for (int i = 10; i <= 100; i += 10) { // pokaż informacje dla maksymalnie 100 wizyt
+                if (numberOfRows > i && numberOfRows <= i + 10)
+                    numberOfColumns = (i + 10) / 10; // ustaw liczbę kolumn na podstawie liczby rekordów
+            }
         }
 
         if (numberOfRows % 2 == 1)
