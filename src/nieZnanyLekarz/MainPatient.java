@@ -2,13 +2,13 @@ package nieZnanyLekarz;
 
 import nieZnanyLekarz.generalPackage.LoginScreen;
 
-import static nieZnanyLekarz.generalPackage.LoginScreen.setFlagDoctor;
+import static nieZnanyLekarz.generalPackage.LoginScreen.setFlagLoggedIn;
 
 class MainPatient {
 
     public static void main(String[] args) {
 
-        setFlagDoctor("P"); // ustal flagę na pacjenta
+        setFlagLoggedIn("P"); // ustal flagę na pacjenta
 
         LoginScreen loginScreen = new LoginScreen();
         loginScreen.drawLoginFrame(); // pokaż ekran logowania

@@ -12,19 +12,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class LoginScreen
         implements DrawButtons, DrawFrame {
 
-    private static String string_flagDoctors;
-    public String getFlagDoctor() {
-        return string_flagDoctors;
+    private static String string_flagLoggedIn;
+    public String getFlagLoggedIn() {
+        return string_flagLoggedIn;
     }
-    public static void setFlagDoctor(String flagDoctor) {
-        string_flagDoctors = flagDoctor;
+    public static void setFlagLoggedIn(String flagLoggedIn) {
+        string_flagLoggedIn = flagLoggedIn;
     }
 
     private JFrame frame_loginScreen = new JFrame("Logging screen"); // stwórz ramkę logowania
     private JButton button_submit = new JButton("Log in"); // stwórz przycisk do logowania
-
-    private JTextField textField_login = new JTextField(); // stwórz wiersz do wpisania loginu
-
+    private JTextField textField_login = new JTextField("mmiki"); // stwórz wiersz do wpisania loginu
     private AtomicBoolean atomicBoolean_loginAndPasswordValidated = new AtomicBoolean(false); // ustal wartość walidacji loginy na false
 
     public void drawLoginFrame() {
@@ -51,12 +49,12 @@ public class LoginScreen
     }
 
     private void proceedAfterSuccessfulLogin() {
-        if (getFlagDoctor().equals("D") && atomicBoolean_loginAndPasswordValidated.get()) {
+        if (getFlagLoggedIn().equals("D") && atomicBoolean_loginAndPasswordValidated.get()) {
             SelectDoctorName.setSelectedDoctorName(textField_login.getText());
             frame_loginScreen.dispose();
             SelectActionDoctor selectActionDoctor = new SelectActionDoctor();
             selectActionDoctor.selectActionDoctor(); // pokaż ramkę z wyborem akcji dla doktora
-        } else if (getFlagDoctor().equals("P") && atomicBoolean_loginAndPasswordValidated.get()) {
+        } else if (getFlagLoggedIn().equals("P") && atomicBoolean_loginAndPasswordValidated.get()) {
             frame_loginScreen.dispose();
             SelectActionPatient selectActionPatient = new SelectActionPatient();
             selectActionPatient.selectActionPatient(); // pokaż ramkę z wyborem akcji dla pacjenta

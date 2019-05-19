@@ -3,7 +3,6 @@ package nieZnanyLekarz.patientPackage;
 import nieZnanyLekarz.interfacePackage.*;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,14 +12,11 @@ public class SelectSpecialization
         implements DrawButtons, DrawFrame, SelectionScreen, SelectDoctors {
 
     private static String doctorSpecialization;
-    static String getDoctorSpecialization() {
+    public static String getDoctorSpecialization() {
         return doctorSpecialization;
     }
-    private static void setDoctorSpecialization(String doctorSpecialization) {
-        SelectSpecialization.doctorSpecialization = doctorSpecialization;
-    }
 
-    void selectSpecialization() throws IOException {
+    void selectSpecialization() {
         // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
         String[] stringArray_doctorSpecialization = {"Internist", "Oncologist", "Cardiologist"};
         List<String> stringList_doctorSpecialization = new ArrayList<>(Arrays.asList(stringArray_doctorSpecialization));
@@ -36,8 +32,7 @@ public class SelectSpecialization
             int finalI = i;
             button_doctorSpecialization[i].addActionListener(e -> { // dodaj akcję po kliknięciu
                 frame_selectSpecialization.dispose(); // ukryj ramkę specjalizacji
-                SelectSpecialization.setDoctorSpecialization(button_doctorSpecialization[finalI].getText()); // ustal wartość zmiennej na tekst z przycisku
-
+                doctorSpecialization = button_doctorSpecialization[finalI].getText();
                 SelectDoctorName selectDoctorName = new SelectDoctorName();
                 selectDoctorName.selectDoctorName(); // pokaż ramkę związaną z wyborem imienia lekarza
             });

@@ -14,7 +14,7 @@ public class CalendarScreen
     // TODO: zmienić całą klasę na instancję kalendarza, zrobione tylko dla testów
 
     private static String string_dateSelected;
-    public static String getDateSelected() {
+    static String getDateSelected() {
         return string_dateSelected;
     }
     private static void setDateSelected(String string_dateSelected) {
@@ -43,5 +43,6 @@ public class CalendarScreen
                 hoursScreen.drawHoursButtons();
             });
         }
+
     }
 }

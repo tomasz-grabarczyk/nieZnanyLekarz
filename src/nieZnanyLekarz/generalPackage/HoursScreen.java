@@ -1,25 +1,27 @@
 package nieZnanyLekarz.generalPackage;
 
 import nieZnanyLekarz.interfacePackage.*;
-import nieZnanyLekarz.patientPackage.SelectSpecialization;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HoursScreen
-        implements DrawButtons, DrawFrame, SelectionScreen {
+import static nieZnanyLekarz.generalPackage.CalendarScreen.getDateSelected;
+import static nieZnanyLekarz.patientPackage.SelectDoctorName.getSelectedDoctorName;
+import static nieZnanyLekarz.patientPackage.SelectSpecialization.getDoctorSpecialization;
+
+class HoursScreen
+        implements DrawButtons, DrawFrame, SelectionScreen, WriteDataToFile {
 
     private static String string_hourSelected;
-    public static String getHourSelected() {
+    private static String getHourSelected() {
         return string_hourSelected;
     }
-    public static void setHourSelected(String string_hourSelected) {
-        HoursScreen.string_hourSelected = string_hourSelected;
-    }
-
     private boolean boolean_dateAndHourAddedToFile = false;
+    private String filePath = "/home/zayl/IdeaProjects/nieZnanyLekarz/src/patientAppointment.txt"; // TODO: if needed change path to file
+    private String doctorAppointmentFilePath = "/home/zayl/IdeaProjects/nieZnanyLekarz/src/doctorAppointments.txt";
 
     void drawHoursButtons() {
         // TODO: zmienić sztywne dane w tablicy na takie pobierane z pliku
@@ -28,6 +30,8 @@ public class HoursScreen
 
         JFrame frame_hours = new JFrame("Hours"); // stwórz ramkę dla godzin
         JButton[] button_hours = new JButton[stringList_hours.size()]; // stwórz przyciski dla godzin w ilości elementów listy
+
+        LoginScreen loginScreen = new LoginScreen();
 
         for (int i = 0; i < stringList_hours.size(); i++) { // iteruje do ilości elementów listy
             button_hours[i] = new JButton(stringList_hours.get(i)); // powiąż element listy z przyciskiem
@@ -42,7 +46,26 @@ public class HoursScreen
                 boolean_dateAndHourAddedToFile = true;
 
                 if (boolean_dateAndHourAddedToFile) {
-                    JOptionPane.showMessageDialog(null, "Successfully added new appointment!", "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Successfully added new appointment!", "Add new appointment", JOptionPane.INFORMATION_MESSAGE);
+                    if (loginScreen.getFlagLoggedIn().equals("P")) { // jeśli loguje się pacjent
+                        if (getDoctorSpecialization() != null && getSelectedDoctorName() != null && getDateSelected() != null && getHourSelected() != null) { // zrobione aby uniknąć wrzucania wartości NULL w zmienne przy uruchomieniu apki
+                            try {
+                                String patientAppointmentInfo = "  " + getDoctorSpecialization() + ";" + getSelectedDoctorName() + ";" + getDateSelected() + ";" + getHourSelected();
+                                writeDataToFile(filePath, patientAppointmentInfo);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    } else if (loginScreen.getFlagLoggedIn().equals("D")) { // jeśli loguje się doktor
+                        if (getDateSelected() != null && getHourSelected() != null) { // zrobione aby uniknąć wrzucania wartości NULL w zmienne przy uruchomieniu apki
+                            try {
+                                String doctorAppointmentInfo = "  " + getSelectedDoctorName() + getDateSelected() + ";" + getHourSelected();
+                                writeDataToFile(doctorAppointmentFilePath, doctorAppointmentInfo);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
                     selectionScreen();
                 } else {
                     JOptionPane.showMessageDialog(null, "Failed to add new appointment!\nPlease try again!", "Add new appointment ", JOptionPane.INFORMATION_MESSAGE);
